@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'tarthas'
-include('app', 'list', 'utilities', 'tarthas')
+include('tarthas')
