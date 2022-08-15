@@ -5,9 +5,9 @@
  */
 
 plugins {
-    // Support convention plugins written in Groovy. Convention plugins are build scripts in 'src/main' that automatically become available as plugins in the main build.
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'tarthas.scala-application-conventions'
 }
 
 dependencies {
@@ -19,6 +19,11 @@ dependencies {
     implementation 'org.benf:cfr:0.151'
     implementation 'org.apache.httpcomponents:httpclient:4.5.10'
 
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'tdemos.ArthasDemo'
 }
 
 shadowJar {

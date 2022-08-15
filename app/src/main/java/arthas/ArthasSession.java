@@ -101,6 +101,10 @@ public class ArthasSession {
         if (response.getState() == SUCCEEDED) {
             Map<String, Object> result = (Map) response.getBody();
             System.out.println("made cmd:" + command);
+            System.out.println("cmd result:");
+            for (Map.Entry<String, Object> kv: result.entrySet()) {
+                System.out.printf("%s=%s%n", kv.getKey(), kv.getValue());
+            }
         } else {
             System.out.println("pull request failed: " + response.getMessage());
         }
@@ -114,6 +118,10 @@ public class ArthasSession {
         if (response.getState() == SUCCEEDED) {
             Map<String, Object> result = (Map) response.getBody();
             System.out.println("made cmd:" + command);
+            System.out.println("cmd result:");
+            for (Map.Entry<String, Object> kv: result.entrySet()) {
+                System.out.printf("%s=%s%n", kv.getKey(), kv.getValue());
+            }
         } else {
             System.out.println("pull request failed: " + response.getMessage());
         }
