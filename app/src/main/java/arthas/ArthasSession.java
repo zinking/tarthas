@@ -1,6 +1,6 @@
 package arthas;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.taobao.arthas.core.shell.term.impl.http.api.ApiRequest;
 import com.taobao.arthas.core.shell.term.impl.http.api.ApiResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;

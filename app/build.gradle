@@ -8,14 +8,15 @@ plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'tarthas.scala-application-conventions'
+    id 'maven-publish'
 }
 
 dependencies {
     implementation 'org.scala-lang:scala-library:2.11.12'
     implementation 'com.alibaba:bytekit-core:0.0.8-SNAPSHOT'
     implementation 'net.bytebuddy:byte-buddy-agent:1.11.6'
-    implementation 'com.taobao.arthas:arthas-core:3.6.1-tencent-1.1-SNAPSHOT'
-    implementation 'com.taobao.arthas:arthas-spy:3.6.1-tencent-1.1-SNAPSHOT'
+    implementation 'com.taobao.arthas:arthas-core:3.6.8-tencent-1.2-SNAPSHOT'
+    implementation 'com.taobao.arthas:arthas-spy:3.6.8-tencent-1.2-SNAPSHOT'
     implementation 'org.benf:cfr:0.151'
     implementation 'org.apache.httpcomponents:httpclient:4.5.10'
 
@@ -29,7 +30,7 @@ application {
 shadowJar {
     archiveBaseName.set('shadow-tarthas')
     archiveClassifier.set('')
-    archiveVersion.set('')
+    archiveVersion.set('1.1-SNAPSHOT')
 }
 
 repositories {
@@ -38,6 +39,19 @@ repositories {
     maven { url "https://mirrors.tencent.com/repository/maven/tianqiong-releases" }
     maven { url "https://mirrors.tencent.com/repository/maven/tencent_public" }
     maven { url "https://mirrors.tencent.com/repository/maven/tencent_public_snapshots" }
+}
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        shadow(MavenPublication) { publication ->
+            groupId = 'com.tencent.tarthas'
+            artifactId = 'shadow-tarthas'
+            version = '1.1-SNAPSHOT'
+//            from components.java
+            from project.shadow.component(publication)
+        }
+    }
 }
 
 
