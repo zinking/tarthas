@@ -9,6 +9,15 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'tarthas.scala-application-conventions'
     id 'maven-publish'
+    id 'com.diffplug.spotless' version '6.13.0'
+}
+
+apply plugin: 'com.diffplug.spotless'
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
 
 dependencies {
@@ -19,6 +28,8 @@ dependencies {
     implementation 'com.taobao.arthas:arthas-spy:3.6.8-tencent-2.1-SNAPSHOT'
     implementation 'org.benf:cfr:0.151'
     implementation 'org.apache.httpcomponents:httpclient:4.5.10'
+
+//    classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.13.0'
 
 }
 

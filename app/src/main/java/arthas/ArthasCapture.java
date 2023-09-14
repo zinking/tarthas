@@ -10,5 +10,4 @@ public class ArthasCapture {
     capturedObjs.add(obj);
     return "1";
   }
-
 }
