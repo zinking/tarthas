@@ -12,6 +12,8 @@ import com.alibaba.fastjson2.JSON;
 import com.taobao.arthas.core.shell.term.impl.http.api.ApiRequest;
 import com.taobao.arthas.core.shell.term.impl.http.api.ApiResponse;
 import java.util.Map;
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -19,6 +21,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+@Slf4j
 public class ArthasSession {
   private static final String HOST = "127.0.0.1";
   private static final String PORT = "33333";
@@ -36,9 +39,9 @@ public class ArthasSession {
       ArthasClassLoader classLoader = new ArthasClassLoader();
       Class clazz = classLoader.loadClass("arthas.ArthasStub");
       clazz.newInstance();
-      System.out.println("ArthausStub loader: " + clazz.getClassLoader());
+      log.info("initStub {}", clazz.getClassLoader());
     } catch (Exception e) {
-      System.out.println("loading Arthas failed");
+      log.error("initStub error {}", e.getMessage());
       throw new RuntimeException(e);
     }
   }
@@ -63,9 +66,9 @@ public class ArthasSession {
     request.setAction(CLOSE_SESSION.name());
     ApiResponse response = makeApiRequest(request);
     if (response.getState() == SUCCEEDED) {
-      System.out.printf("session %s closed %n", sessionId);
+      log.info("session {} closed", sessionId);
     } else {
-      System.out.println("close session failed");
+      log.error("session {} close failed", sessionId);
     }
   }
 
